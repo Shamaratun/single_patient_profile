@@ -7,20 +7,17 @@ export async function FetchById(patient_id: number, admission_id: number) {
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ action_mode: "get_profile", patient_id , admission_id }),
+        body: JSON.stringify({ action_mode: "get_profile", patient_id, admission_id }),
         cache: "no-store",
       }
     );
-
-    const data = await res.json();
-
-    if (!res.ok) {
-      throw new Error(`Failed to fetch data: ${res.status}`);
+    console.log(res.json)
+    if (!res.status.toString().startsWith("2")) {
+      throw new Error("Failed to fetch data");
     }
 
-    console.log("Fetched data:", data);
+    return res.json();
 
-    return data?.data || data || null;
   } catch (err) {
     console.error("FetchById failed:", err);
     return null;

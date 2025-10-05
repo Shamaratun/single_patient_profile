@@ -92,7 +92,10 @@ export interface MedicalData {
   [key: string]: any;
 }
 
-  
+ export interface Props {
+  params: { id: string; 
+    admission_id: string };
+} 
 export type Admission = {
   admission_data?: any;
   pre_ops_data?: MedicalData[] | null;

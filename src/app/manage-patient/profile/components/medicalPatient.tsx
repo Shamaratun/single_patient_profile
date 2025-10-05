@@ -1,10 +1,16 @@
-import { FetchById } from "../fetchById";
-import MedicalInfoComponent from "../../components/medicalInfoComponent";
+import { FetchById } from "../[id]/fetchById";
+import MedicalInfoComponent from "./medicalInfoComponent";
 
-export default async function MedicalPatient({ params }: { params: { id: string }, admission_id: string }) {
-  const { id } = params;
-const { admission_id } = params;
-  const patientData = await FetchById(Number(id),Number(admission_id));
+
+ export default async function MedicalPatient({
+  params,
+}: {
+  params: { id: string; admission_id: string };
+}) {
+  const { id, admission_id } = params;
+
+  
+  const patientData = await FetchById(Number(id), Number(admission_id));
 
   if (!patientData) {
     return <div className="text-center text-red-500 p-6">No patient found</div>;
